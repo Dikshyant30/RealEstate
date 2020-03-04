@@ -45,14 +45,26 @@ Route::get('users','API\UserController@getAllUsers');
 //GET Project
 Route::get('projects','ProjectController@getAllProjects');
 
+//Location CRUD
 Route::get('locations','LocationController@getAllLocations');
 Route::post('createLocation','LocationController@createLocation');
 Route::get('showLocation/{id}','LocationController@show');
 Route::put('updateLocation/{id}','LocationController@updateById');
 Route::delete('destroyLocation/{id}','LocationController@destroy');
 
+//Property CRUD
 Route::get('properties','PropertyController@getAllProperties');
 Route::post('createProperty','PropertyController@createProperty');
 Route::get('showProperty/{id}','PropertyController@show');
 Route::put('updateProperty/{id}','PropertyController@updateById');
 Route::delete('destroyProperty/{id}','PropertyController@destroy');
+
+//Property_Project Relation
+Route::get('propertyByProjectId/{id}','HomeController@propertyByProjectId');
+Route::get('projectByPropertyId/{id}','HomeController@projectByPropertyId');
+
+//Location_Project Relation
+Route::get('locationByProjectId/{id}','HomeController@locationByProjectId');
+Route::get('projectByLocationId/{id}','HomeController@projectByLocationId');
+
+
