@@ -18,6 +18,17 @@ class ProjectController extends Controller
   
     public function createProject(Request $request)
     {  
+      $validator = Validator::make($request->all(), [ 
+        'name' => 'required|max:20',
+        'duration' => 'required|max:6', 
+        'cost' => 'required',
+        'loc_id' => 'required|numeric',
+        'created_by' => 'required|numeric', 
+        'updated_by' => 'required|numeric', 
+         ]);
+    if ($validator->fails()) { 
+        return response()->json(['error'=>$validator->errors()], 401);            
+       }
       $attribute = [
         'name'=>$request->input('name'),
         'duration'=> $request->input('duration'),
@@ -36,6 +47,17 @@ class ProjectController extends Controller
     }
     public function updateById(Request $request,$id)
     {
+      $validator = Validator::make($request->all(), [ 
+        'name' => 'required|max:20',
+        'duration' => 'required|max:6', 
+        'cost' => 'required',
+        'loc_id' => 'required|numeric',
+        'created_by' => 'required|numeric', 
+        'updated_by' => 'required|numeric', 
+         ]);
+    if ($validator->fails()) { 
+        return response()->json(['error'=>$validator->errors()], 401);            
+       }
   $attribute = [
         'name'=>$request->input('name'),
         'duration'=> $request->input('duration'),

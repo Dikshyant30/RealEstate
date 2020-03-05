@@ -18,6 +18,16 @@ class LocationController extends Controller
   
     public function createLocation(Request $request)
     {  
+      $validator = Validator::make($request->all(), [ 
+        'name' => 'required|max:20',
+        'pin' => 'required|numeric|max:6', 
+        'landmark' => 'required|max:20',
+        'created_by' => 'required|numeric', 
+        'updated_by' => 'required|numeric', 
+         ]);
+    if ($validator->fails()) { 
+        return response()->json(['error'=>$validator->errors()], 401);            
+       }
         $attribute = [
             'name'=>$request->input('name'),
             'pin'=> $request->input('pin'),
@@ -29,12 +39,22 @@ class LocationController extends Controller
       print_r($attribute);
       return $this->location->create($attribute);
     }
-    public function getAllLocation()
+    public function getAllLocations()
     {
       return $this->location->getAll();
     }
     public function updateById(Request $request,$id)
     {
+      $validator = Validator::make($request->all(), [ 
+        'name' => 'required|max:20',
+        'pin' => 'required|numeric|max:6', 
+        'landmark' => 'required|max:20',
+        'created_by' => 'required|numeric', 
+        'updated_by' => 'required|numeric', 
+         ]);
+    if ($validator->fails()) { 
+        return response()->json(['error'=>$validator->errors()], 401);            
+       }
         $attribute = [
             'name'=>$request->input('name'),
             'pin'=> $request->input('pin'),

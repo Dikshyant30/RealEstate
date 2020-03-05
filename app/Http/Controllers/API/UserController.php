@@ -23,7 +23,7 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [ 
             'name' => 'required',
             'role' => 'required|max:10', 
-            'number' => 'required',
+            'number' => 'required|numeric',
             'email' => 'required|email', 
             'password' => 'required', 
             'c_password' => 'required|same:password', 
@@ -79,7 +79,7 @@ return response()->json(['success'=>$success], $this-> successStatus);
         $validator = Validator::make($request->all(), [ 
             'name' => 'required',
             'role' => 'required|max:10', 
-            'number' => 'required',
+            'number' => 'required|numeric|numeric',
             'email' => 'required|email', 
             'password' => 'required', 
             'c_password' => 'required|same:password', 
